@@ -1,0 +1,82 @@
+﻿@model ClienteMVC.Entity.Endereco
+@{
+    ViewBag.Title = "EditEndereco";
+}
+<h2>Editar Endereço</h2>
+@using (Html.BeginForm())
+{
+
+    <fieldset>
+        <legend>Endereco</legend>
+        @Html.HiddenFor(model => model.IdEndereco)
+        @Html.HiddenFor(model => model.IdCliente)
+        <div class="editor-label">
+            <b>Estado</b>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Estados")
+        </div>
+
+        <div id="divCidades">
+            <div class="editor-label">
+                <b>Cidade</b>
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("IdCidade")
+            </div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Logradouro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Logradouro)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Numero)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Numero)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Bairro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Bairro)
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Voltar", "ListaEnderecos", new { idCliente = Model.IdCliente })
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+
+    //$("#divCidades").hide();
+
+    $("#Estados").change(function () {
+
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "ListaCidades",
+            data: { estado: $("#Estados").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["cidades"], function (index, obj) {
+                    html = html + "<option value='" + obj.Value + "'>"
+                                + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#IdCidade").html(html);
+                $("#divCidades").show();
+            }
+        });
+
+    });    
+</script>

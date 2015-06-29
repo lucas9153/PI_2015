@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ClienteMVC.Entity.TipoEndereco>
+
+<table>
+    <tr>
+        <th>
+            Descrição
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            <input type="button" value="Editar" 
+                onclick="tipoEndereco(@item.IdTipoEndereco);" /> |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdTipoEndereco })
+        </td>
+    </tr>
+}
+
+</table>
+
+<script>
+    function tipoEndereco(id) {
+        editar(id);
+    }
+</script>

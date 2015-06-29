@@ -1,0 +1,93 @@
+﻿@model ClienteMVC.Entity.Cliente
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+
+
+    <fieldset>
+        <legend>Cliente</legend>
+
+        @Html.HiddenFor(model => model.IdCliente)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CPF)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CPF)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DataNascimento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DataNascimento)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" onclick="return validar();"/>
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+    @if (Model.IdCliente != 0)
+    {
+        @Html.ActionLink("Endereços", "ListaEnderecos", new { idCliente = Model.IdCliente })
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <script>
+        alert('@Html.Raw(ViewBag.Error)');
+    </script>
+}
+
+
+<script>
+
+    function validar() {
+
+        if ($("#Nome").val() == "") {
+            alert("Nome vazio!");
+            return false;
+        }
+
+        if ($("#CPF").val() == "") {
+            alert("CPF vazio!");
+            return false;
+        }
+
+        if ($("#Email").val() == "") {
+            alert("E-mail vazio!");
+            return false;
+        }
+
+        return true;
+    }
+
+</script>

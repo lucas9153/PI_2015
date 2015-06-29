@@ -1,0 +1,624 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MVCTesteModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MVCTesteModelStoreContainer">
+          <EntitySet Name="Cidade" EntityType="MVCTesteModel.Store.Cidade" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cliente" EntityType="MVCTesteModel.Store.Cliente" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Endereco" EntityType="MVCTesteModel.Store.Endereco" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Estado" EntityType="MVCTesteModel.Store.Estado" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Marca" EntityType="MVCTesteModel.Store.Marca" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Modelo" EntityType="MVCTesteModel.Store.Modelo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Perfil" EntityType="MVCTesteModel.Store.Perfil" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PerfilUsuario" EntityType="MVCTesteModel.Store.PerfilUsuario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Produto" EntityType="MVCTesteModel.Store.Produto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoEndereco" EntityType="MVCTesteModel.Store.TipoEndereco" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuario" EntityType="MVCTesteModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Cidade_Estado" Association="MVCTesteModel.Store.FK_Cidade_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Cidade" EntitySet="Cidade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Endereco_Cidade" Association="MVCTesteModel.Store.FK_Endereco_Cidade">
+            <End Role="Cidade" EntitySet="Cidade" />
+            <End Role="Endereco" EntitySet="Endereco" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Endereco_Cliente" Association="MVCTesteModel.Store.FK_Endereco_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Endereco" EntitySet="Endereco" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Modelo_Marca" Association="MVCTesteModel.Store.FK_Modelo_Marca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Modelo" EntitySet="Modelo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerfilUsuario_Perfil" Association="MVCTesteModel.Store.FK_PerfilUsuario_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerfilUsuario_Usuario" Association="MVCTesteModel.Store.FK_PerfilUsuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Produto_Modelo" Association="MVCTesteModel.Store.FK_Produto_Modelo">
+            <End Role="Modelo" EntitySet="Modelo" />
+            <End Role="Produto" EntitySet="Produto" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cidade">
+          <Key>
+            <PropertyRef Name="IdCidade" />
+          </Key>
+          <Property Name="IdCidade" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="UF" Type="varchar" Nullable="false" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CPF" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="DataNascimento" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Endereco">
+          <Key>
+            <PropertyRef Name="IdEndereco" />
+          </Key>
+          <Property Name="IdEndereco" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdCidade" Type="int" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="Logradouro" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Bairro" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="UF" />
+          </Key>
+          <Property Name="UF" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="IdMarca" />
+          </Key>
+          <Property Name="IdMarca" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Modelo">
+          <Key>
+            <PropertyRef Name="IdModelo" />
+          </Key>
+          <Property Name="IdModelo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="IdMarca" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Name="IdPerfil" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PerfilUsuario">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdPerfil" Type="int" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="DataAutorizacao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="IdProduto" />
+          </Key>
+          <Property Name="IdProduto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Preco" Type="money" Nullable="false" />
+          <Property Name="IdModelo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoEndereco">
+          <Key>
+            <PropertyRef Name="IdTipoEndereco" />
+          </Key>
+          <Property Name="IdTipoEndereco" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Senha" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_Cidade_Estado">
+          <End Role="Estado" Type="MVCTesteModel.Store.Estado" Multiplicity="1" />
+          <End Role="Cidade" Type="MVCTesteModel.Store.Cidade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="UF" />
+            </Principal>
+            <Dependent Role="Cidade">
+              <PropertyRef Name="UF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Endereco_Cidade">
+          <End Role="Cidade" Type="MVCTesteModel.Store.Cidade" Multiplicity="1" />
+          <End Role="Endereco" Type="MVCTesteModel.Store.Endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cidade">
+              <PropertyRef Name="IdCidade" />
+            </Principal>
+            <Dependent Role="Endereco">
+              <PropertyRef Name="IdCidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Endereco_Cliente">
+          <End Role="Cliente" Type="MVCTesteModel.Store.Cliente" Multiplicity="1" />
+          <End Role="Endereco" Type="MVCTesteModel.Store.Endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Endereco">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Modelo_Marca">
+          <End Role="Marca" Type="MVCTesteModel.Store.Marca" Multiplicity="1" />
+          <End Role="Modelo" Type="MVCTesteModel.Store.Modelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="IdMarca" />
+            </Principal>
+            <Dependent Role="Modelo">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerfilUsuario_Perfil">
+          <End Role="Perfil" Type="MVCTesteModel.Store.Perfil" Multiplicity="1" />
+          <End Role="PerfilUsuario" Type="MVCTesteModel.Store.PerfilUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="IdPerfil" />
+            </Principal>
+            <Dependent Role="PerfilUsuario">
+              <PropertyRef Name="IdPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerfilUsuario_Usuario">
+          <End Role="Usuario" Type="MVCTesteModel.Store.Usuario" Multiplicity="1" />
+          <End Role="PerfilUsuario" Type="MVCTesteModel.Store.PerfilUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="PerfilUsuario">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Produto_Modelo">
+          <End Role="Modelo" Type="MVCTesteModel.Store.Modelo" Multiplicity="1" />
+          <End Role="Produto" Type="MVCTesteModel.Store.Produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modelo">
+              <PropertyRef Name="IdModelo" />
+            </Principal>
+            <Dependent Role="Produto">
+              <PropertyRef Name="IdModelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MVCTesteModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MVCTesteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="MVCTesteModel.Cliente" />
+          <EntitySet Name="Cidade" EntityType="MVCTesteModel.Cidade" />
+          <EntitySet Name="Endereco" EntityType="MVCTesteModel.Endereco" />
+          <EntitySet Name="Estado" EntityType="MVCTesteModel.Estado" />
+          <AssociationSet Name="FK_Cidade_Estado" Association="MVCTesteModel.FK_Cidade_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Cidade" EntitySet="Cidade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Endereco_Cidade" Association="MVCTesteModel.FK_Endereco_Cidade">
+            <End Role="Cidade" EntitySet="Cidade" />
+            <End Role="Endereco" EntitySet="Endereco" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Endereco_Cliente" Association="MVCTesteModel.FK_Endereco_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Endereco" EntitySet="Endereco" />
+          </AssociationSet>
+          <EntitySet Name="Marca" EntityType="MVCTesteModel.Marca" />
+          <EntitySet Name="Modelo" EntityType="MVCTesteModel.Modelo" />
+          <EntitySet Name="Produto" EntityType="MVCTesteModel.Produto" />
+          <AssociationSet Name="FK_Modelo_Marca" Association="MVCTesteModel.FK_Modelo_Marca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Modelo" EntitySet="Modelo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Produto_Modelo" Association="MVCTesteModel.FK_Produto_Modelo">
+            <End Role="Modelo" EntitySet="Modelo" />
+            <End Role="Produto" EntitySet="Produto" />
+          </AssociationSet>
+          <EntitySet Name="Usuario" EntityType="MVCTesteModel.Usuario" />
+          <EntitySet Name="Perfil" EntityType="MVCTesteModel.Perfil" />
+          <EntitySet Name="PerfilUsuario" EntityType="MVCTesteModel.PerfilUsuario" />
+          <AssociationSet Name="FK_PerfilUsuario_Perfil" Association="MVCTesteModel.FK_PerfilUsuario_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerfilUsuario_Usuario" Association="MVCTesteModel.FK_PerfilUsuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
+          </AssociationSet>
+          <EntitySet Name="TipoEndereco" EntityType="MVCTesteModel.TipoEndereco" />
+        </EntityContainer>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CPF" Type="String" Nullable="false" MaxLength="11" Unicode="false" FixedLength="false" />
+          <Property Name="DataNascimento" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Endereco" Relationship="MVCTesteModel.FK_Endereco_Cliente" FromRole="Cliente" ToRole="Endereco" />
+        </EntityType>
+        <EntityType Name="Cidade">
+          <Key>
+            <PropertyRef Name="IdCidade" />
+          </Key>
+          <Property Type="Int32" Name="IdCidade" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UF" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Estado" Relationship="MVCTesteModel.FK_Cidade_Estado" FromRole="Cidade" ToRole="Estado" />
+          <NavigationProperty Name="Endereco" Relationship="MVCTesteModel.FK_Endereco_Cidade" FromRole="Cidade" ToRole="Endereco" />
+        </EntityType>
+        <EntityType Name="Endereco">
+          <Key>
+            <PropertyRef Name="IdEndereco" />
+          </Key>
+          <Property Type="Int32" Name="IdEndereco" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdCidade" Nullable="false" />
+          <Property Type="Int32" Name="IdCliente" Nullable="false" />
+          <Property Type="String" Name="Logradouro" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Numero" Nullable="false" />
+          <Property Type="String" Name="Bairro" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cidade" Relationship="MVCTesteModel.FK_Endereco_Cidade" FromRole="Endereco" ToRole="Cidade" />
+          <NavigationProperty Name="Cliente" Relationship="MVCTesteModel.FK_Endereco_Cliente" FromRole="Endereco" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="UF" />
+          </Key>
+          <Property Type="String" Name="UF" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cidade" Relationship="MVCTesteModel.FK_Cidade_Estado" FromRole="Estado" ToRole="Cidade" />
+        </EntityType>
+        <Association Name="FK_Cidade_Estado">
+          <End Type="MVCTesteModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="MVCTesteModel.Cidade" Role="Cidade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="UF" />
+            </Principal>
+            <Dependent Role="Cidade">
+              <PropertyRef Name="UF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Endereco_Cidade">
+          <End Type="MVCTesteModel.Cidade" Role="Cidade" Multiplicity="1" />
+          <End Type="MVCTesteModel.Endereco" Role="Endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cidade">
+              <PropertyRef Name="IdCidade" />
+            </Principal>
+            <Dependent Role="Endereco">
+              <PropertyRef Name="IdCidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Endereco_Cliente">
+          <End Type="MVCTesteModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="MVCTesteModel.Endereco" Role="Endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Endereco">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="IdMarca" />
+          </Key>
+          <Property Type="Int32" Name="IdMarca" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Modelo" Relationship="MVCTesteModel.FK_Modelo_Marca" FromRole="Marca" ToRole="Modelo" />
+        </EntityType>
+        <EntityType Name="Modelo">
+          <Key>
+            <PropertyRef Name="IdModelo" />
+          </Key>
+          <Property Type="Int32" Name="IdModelo" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IdMarca" Nullable="false" />
+          <NavigationProperty Name="Marca" Relationship="MVCTesteModel.FK_Modelo_Marca" FromRole="Modelo" ToRole="Marca" />
+          <NavigationProperty Name="Produto" Relationship="MVCTesteModel.FK_Produto_Modelo" FromRole="Modelo" ToRole="Produto" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="IdProduto" />
+          </Key>
+          <Property Type="Int32" Name="IdProduto" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Preco" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="IdModelo" Nullable="false" />
+          <NavigationProperty Name="Modelo" Relationship="MVCTesteModel.FK_Produto_Modelo" FromRole="Produto" ToRole="Modelo" />
+        </EntityType>
+        <Association Name="FK_Modelo_Marca">
+          <End Type="MVCTesteModel.Marca" Role="Marca" Multiplicity="1" />
+          <End Type="MVCTesteModel.Modelo" Role="Modelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="IdMarca" />
+            </Principal>
+            <Dependent Role="Modelo">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Produto_Modelo">
+          <End Type="MVCTesteModel.Modelo" Role="Modelo" Multiplicity="1" />
+          <End Type="MVCTesteModel.Produto" Role="Produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modelo">
+              <PropertyRef Name="IdModelo" />
+            </Principal>
+            <Dependent Role="Produto">
+              <PropertyRef Name="IdModelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Login" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Senha" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PerfilUsuario" Relationship="MVCTesteModel.FK_PerfilUsuario_Usuario" FromRole="Usuario" ToRole="PerfilUsuario" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Type="Int32" Name="IdPerfil" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PerfilUsuario" Relationship="MVCTesteModel.FK_PerfilUsuario_Perfil" FromRole="Perfil" ToRole="PerfilUsuario" />
+        </EntityType>
+        <EntityType Name="PerfilUsuario">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Type="Int32" Name="IdPerfil" Nullable="false" />
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="DateTime" Name="DataAutorizacao" Nullable="false" />
+          <NavigationProperty Name="Perfil" Relationship="MVCTesteModel.FK_PerfilUsuario_Perfil" FromRole="PerfilUsuario" ToRole="Perfil" />
+          <NavigationProperty Name="Usuario" Relationship="MVCTesteModel.FK_PerfilUsuario_Usuario" FromRole="PerfilUsuario" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_PerfilUsuario_Perfil">
+          <End Type="MVCTesteModel.Perfil" Role="Perfil" Multiplicity="1" />
+          <End Type="MVCTesteModel.PerfilUsuario" Role="PerfilUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="IdPerfil" />
+            </Principal>
+            <Dependent Role="PerfilUsuario">
+              <PropertyRef Name="IdPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerfilUsuario_Usuario">
+          <End Type="MVCTesteModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="MVCTesteModel.PerfilUsuario" Role="PerfilUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="PerfilUsuario">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TipoEndereco">
+          <Key>
+            <PropertyRef Name="IdTipoEndereco" />
+          </Key>
+          <Property Type="Int32" Name="IdTipoEndereco" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MVCTesteModelStoreContainer" CdmEntityContainer="MVCTesteEntities">
+          <EntitySetMapping Name="Cliente"><EntityTypeMapping TypeName="MVCTesteModel.Cliente"><MappingFragment StoreEntitySet="Cliente">
+            <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+            <ScalarProperty Name="Nome" ColumnName="Nome" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="CPF" ColumnName="CPF" />
+            <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Cidade">
+            <EntityTypeMapping TypeName="MVCTesteModel.Cidade">
+              <MappingFragment StoreEntitySet="Cidade">
+                <ScalarProperty Name="UF" ColumnName="UF" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdCidade" ColumnName="IdCidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Endereco">
+            <EntityTypeMapping TypeName="MVCTesteModel.Endereco">
+              <MappingFragment StoreEntitySet="Endereco">
+                <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Logradouro" ColumnName="Logradouro" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdCidade" ColumnName="IdCidade" />
+                <ScalarProperty Name="IdEndereco" ColumnName="IdEndereco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="MVCTesteModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="UF" ColumnName="UF" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marca">
+            <EntityTypeMapping TypeName="MVCTesteModel.Marca">
+              <MappingFragment StoreEntitySet="Marca">
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modelo">
+            <EntityTypeMapping TypeName="MVCTesteModel.Modelo">
+              <MappingFragment StoreEntitySet="Modelo">
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdModelo" ColumnName="IdModelo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produto">
+            <EntityTypeMapping TypeName="MVCTesteModel.Produto">
+              <MappingFragment StoreEntitySet="Produto">
+                <ScalarProperty Name="IdModelo" ColumnName="IdModelo" />
+                <ScalarProperty Name="Preco" ColumnName="Preco" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdProduto" ColumnName="IdProduto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="MVCTesteModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfil">
+            <EntityTypeMapping TypeName="MVCTesteModel.Perfil">
+              <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PerfilUsuario">
+            <EntityTypeMapping TypeName="MVCTesteModel.PerfilUsuario">
+              <MappingFragment StoreEntitySet="PerfilUsuario">
+                <ScalarProperty Name="DataAutorizacao" ColumnName="DataAutorizacao" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEndereco">
+            <EntityTypeMapping TypeName="MVCTesteModel.TipoEndereco">
+              <MappingFragment StoreEntitySet="TipoEndereco">
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdTipoEndereco" ColumnName="IdTipoEndereco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Cliente" ZoomLevel="64">
+        <EntityTypeShape EntityType="MVCTesteModel.Cliente" Width="1.5" PointX="0.75" PointY="0.75" Height="1.7566536458333331" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVCTesteModel.Cidade" Width="1.5" PointX="5.625" PointY="1.25" Height="1.7566536458333333" />
+        <EntityTypeShape EntityType="MVCTesteModel.Endereco" Width="1.5" PointX="7.875" PointY="0.75" Height="2.2496956380208335" />
+        <EntityTypeShape EntityType="MVCTesteModel.Estado" Width="1.5" PointX="3.375" PointY="1.375" Height="1.4279589843749994" />
+        <AssociationConnector Association="MVCTesteModel.FK_Cidade_Estado" >
+          <ConnectorPoint PointX="4.875" PointY="2.0889794921875" />
+          <ConnectorPoint PointX="5.625" PointY="2.0889794921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="MVCTesteModel.FK_Endereco_Cidade" >
+          <ConnectorPoint PointX="7.125" PointY="2.1248478190104167" />
+          <ConnectorPoint PointX="7.875" PointY="2.1248478190104167" />
+        </AssociationConnector>
+        <AssociationConnector Association="MVCTesteModel.FK_Endereco_Cliente" >
+          <ConnectorPoint PointX="2.25" PointY="0.96875" />
+          <ConnectorPoint PointX="7.875" PointY="0.96875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="MVCTesteModel.Marca" Width="1.5" PointX="1.125" PointY="3.875" Height="1.4279589843749996" />
+        <EntityTypeShape EntityType="MVCTesteModel.Modelo" Width="1.5" PointX="4" PointY="3.875" Height="1.7566536458333317" />
+        <EntityTypeShape EntityType="MVCTesteModel.Produto" Width="1.5" PointX="7.5" PointY="3.75" Height="1.7566536458333317" />
+        <AssociationConnector Association="MVCTesteModel.FK_Modelo_Marca" >
+          <ConnectorPoint PointX="2.625" PointY="4.5889794921875" />
+          <ConnectorPoint PointX="4" PointY="4.5889794921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="MVCTesteModel.FK_Produto_Modelo" >
+          <ConnectorPoint PointX="5.5" PointY="4.6908268229166659" />
+          <ConnectorPoint PointX="7.5" PointY="4.6908268229166659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="MVCTesteModel.Usuario" Width="1.5" PointX="0.75" PointY="6.75" Height="1.4279589843749996" />
+        <EntityTypeShape EntityType="MVCTesteModel.Perfil" Width="1.5" PointX="6.25" PointY="6.75" Height="1.4279589843749996" />
+        <EntityTypeShape EntityType="MVCTesteModel.PerfilUsuario" Width="1.5" PointX="3" PointY="6.625" Height="1.7566536458333326" />
+        <AssociationConnector Association="MVCTesteModel.FK_PerfilUsuario_Perfil" >
+          <ConnectorPoint PointX="6.25" PointY="7.4639794921875" />
+          <ConnectorPoint PointX="4.5" PointY="7.4639794921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="MVCTesteModel.FK_PerfilUsuario_Usuario" >
+          <ConnectorPoint PointX="2.25" PointY="7.5461531575520828" />
+          <ConnectorPoint PointX="3" PointY="7.5461531575520828" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="MVCTesteModel.TipoEndereco" Width="1.5" PointX="8.375" PointY="6.75" Height="1.2636116536458353" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

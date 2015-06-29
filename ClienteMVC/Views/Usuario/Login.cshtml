@@ -1,0 +1,53 @@
+﻿@model ClienteMVC.Entity.Usuario
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm()) {
+
+    <fieldset>
+        <legend>Usuario</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Login)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Login)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Senha)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.Senha)
+        </div>
+
+        <p>
+            <input type="submit" value="Logar" onclick="return validar();" />
+        </p>
+    </fieldset>
+}
+
+@if (ViewBag.Erro != null && ViewBag.Erro != "")
+{
+    <script>
+        alert('@Html.Raw(ViewBag.Erro)');
+    </script>
+}
+
+<script>
+    function validar() {
+        if ($("#Login").val() == "") {
+            alert("Login obrigatório");
+            return false;
+        }
+        if ($("#Senha").val() == "") {
+            alert("Senha obrigatória");
+            return false;
+        }
+        return true;
+    }
+</script>

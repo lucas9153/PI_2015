@@ -1,0 +1,48 @@
+﻿@model ClienteMVC.Entity.Marca
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>@ViewBag.Titulo</h2>
+
+@using (Html.BeginForm()) {
+
+    <fieldset>
+        <legend>Marca</legend>
+
+        @Html.HiddenFor(model => model.IdMarca)
+
+        <div class="editor-label">
+            <b>Descrição:</b>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Descricao)
+        </div>
+
+        <p>
+            <input type="submit" value="Salvar" onclick="return validar();" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+
+@if (ViewBag.Erro != null && ViewBag.Erro != "")
+{
+    <script>
+        alert('@ViewBag.Erro');
+    </script>
+}
+
+<script>
+    function validar() {
+        if ($("#Descricao").val() == "") {
+            alert('A descrição é obrigatória');
+            return false;
+        }
+        return true;
+    }
+</script>

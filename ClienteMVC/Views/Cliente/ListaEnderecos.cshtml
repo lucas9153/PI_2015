@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ClienteMVC.Entity.Endereco>
+
+@{
+    ViewBag.Title = "ListaEnderecos";
+}
+
+<h2>Endereços do @ViewBag.NomeCliente</h2>
+
+<p>
+    @Html.ActionLink("Novo", "EditEndereco", new { idEndereco = 0, idCliente = @ViewBag.IdCliente })
+    @Html.ActionLink("Voltar", "Edit", new { id = @ViewBag.IdCliente })
+</p>
+<table class="borda">
+    <tr>
+        <th>
+            Logradouro
+        </th>
+        <th>
+            Número
+        </th>
+        <th>
+            Bairro
+        </th>
+        <th>
+            Cidade
+        </th>
+        <th>
+            Estado
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Logradouro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bairro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cidade.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cidade.UF)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditEndereco", new { idEndereco = item.IdEndereco, idCliente = @ViewBag.IdCliente }) |
+            @Html.ActionLink("Delete", "DeleteEndereco",
+                new { idEndereco = item.IdEndereco }, 
+                new { @onclick = "return confirm('Confirma Exclusão?');" })
+        </td>
+    </tr>
+}
+
+</table>

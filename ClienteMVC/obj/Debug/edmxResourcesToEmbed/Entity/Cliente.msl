@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MVCTesteModelStoreContainer" CdmEntityContainer="MVCTesteEntities">
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="MVCTesteModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
+          <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cidade">
+      <EntityTypeMapping TypeName="MVCTesteModel.Cidade">
+        <MappingFragment StoreEntitySet="Cidade">
+          <ScalarProperty Name="UF" ColumnName="UF" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="IdCidade" ColumnName="IdCidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Endereco">
+      <EntityTypeMapping TypeName="MVCTesteModel.Endereco">
+        <MappingFragment StoreEntitySet="Endereco">
+          <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Logradouro" ColumnName="Logradouro" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdCidade" ColumnName="IdCidade" />
+          <ScalarProperty Name="IdEndereco" ColumnName="IdEndereco" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estado">
+      <EntityTypeMapping TypeName="MVCTesteModel.Estado">
+        <MappingFragment StoreEntitySet="Estado">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="UF" ColumnName="UF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marca">
+      <EntityTypeMapping TypeName="MVCTesteModel.Marca">
+        <MappingFragment StoreEntitySet="Marca">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modelo">
+      <EntityTypeMapping TypeName="MVCTesteModel.Modelo">
+        <MappingFragment StoreEntitySet="Modelo">
+          <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="IdModelo" ColumnName="IdModelo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produto">
+      <EntityTypeMapping TypeName="MVCTesteModel.Produto">
+        <MappingFragment StoreEntitySet="Produto">
+          <ScalarProperty Name="IdModelo" ColumnName="IdModelo" />
+          <ScalarProperty Name="Preco" ColumnName="Preco" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="IdProduto" ColumnName="IdProduto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="MVCTesteModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Perfil">
+      <EntityTypeMapping TypeName="MVCTesteModel.Perfil">
+        <MappingFragment StoreEntitySet="Perfil">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PerfilUsuario">
+      <EntityTypeMapping TypeName="MVCTesteModel.PerfilUsuario">
+        <MappingFragment StoreEntitySet="PerfilUsuario">
+          <ScalarProperty Name="DataAutorizacao" ColumnName="DataAutorizacao" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoEndereco">
+      <EntityTypeMapping TypeName="MVCTesteModel.TipoEndereco">
+        <MappingFragment StoreEntitySet="TipoEndereco">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="IdTipoEndereco" ColumnName="IdTipoEndereco" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ClienteMVC.Entity.Marca>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Marcas</h2>
+
+<p>
+    @Html.ActionLink("Novo", "Edit", new { id = 0 })
+</p>
+<table>
+    <tr>
+        <th>
+            Descrição
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td> 
+            @Html.ActionLink("Editar", "Edit", new { id = item.IdMarca }) |
+            @Html.ActionLink("Excluir", "Delete", new { id = item.IdMarca },
+                new { @onclick = "return confirm('Tem certeza?');"})
+        </td>
+    </tr>
+}
+
+</table>
